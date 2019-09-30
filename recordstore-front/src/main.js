@@ -6,6 +6,7 @@ import router from './router'
 import VueAxios from 'vue-axios'
 import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
 import './main.css'
+// import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
@@ -21,5 +22,7 @@ new Vue({
   securedAxiosInstance,
   plainAxiosInstance,
   components: { App },
-  template: '<App/>'
+  // vuetify,
+  // template: '<App/>'
 })
+// 

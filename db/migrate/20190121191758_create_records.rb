@@ -3,6 +3,7 @@ class CreateRecords < ActiveRecord::Migration[5.2]
     create_table :records do |t|
       t.string :title
       t.string :year
+      t.string :status
       t.references :artist, foreign_key: true
       t.references :user, foreign_key: true
 

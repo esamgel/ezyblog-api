@@ -7,6 +7,7 @@ module Api
       # GET /records
       def index
         @records = current_user.records.all
+        # @records = current_user.records.find(artist_id: 2)
 
         render json: @records
       end

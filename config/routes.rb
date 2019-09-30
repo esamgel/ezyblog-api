@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  resources :comments
   namespace :api do
     namespace :v1 do
       resources :records
       resources :artists
+      resources :articles do
+        get "counts", controller: :articles, action: :count
+        resources :comments
+        
+      end
     end
   end
 

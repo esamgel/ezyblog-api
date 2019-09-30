@@ -1,23 +1,33 @@
 <template>
-  <div class="max-w-sm m-auto my-8">
-    <div class="border p-10 border-grey-light shadow rounded">
-      <h3 class="text-2xl mb-6 text-grey-darkest">Sign In</h3>
-      <form @submit.prevent="signin">
-        <div class="text-red" v-if="error">{{ error }}</div>
-
+  <div class="bg-gray-200">
+    <div class="w-full max-w-xs m-auto my-0 py-8">
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-1" @submit.prevent="signin">
         <div class="mb-6">
-          <label for="email" class="label">E-mail Address</label>
-          <input type="email" v-model="email" class="input" id="email" placeholder="andy@web-crunch.com">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Email
+          </label>
+          <input v-model="email" class="shadow appearance-none border rounded py-2 px-3 w-5/6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Email">
         </div>
         <div class="mb-6">
-          <label for="password" class="label">Password</label>
-          <input type="password" v-model="password" class="input" id="password" placeholder="Password">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+            Password
+          </label>
+          <input v-model="password" class="shadow appearance-none border border-red-500 rounded w-5/6 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+          <p class="text-red-500 text-xs italic">Please choose a password.</p>
         </div>
-        <button type="submit" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green hover:bg-green-dark block w-full py-4 text-white items-center justify-center">Sign In</button>
-
-        <div class="my-4"><router-link to="/signup" class="link-grey">Sign up</router-link></div>
+        <div class="flex items-center justify-between">
+          <button class="bg-indigo-500 hover:bg-indigo-700 text-white border-none font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Sign In
+          </button>
+          <a class="inline-block no-underline align-baseline font-bold text-sm text-indigo-500 hover:text-blue-800" href="#">
+            Forgot Password?
+          </a>
+        </div>
       </form>
     </div>
+    <p class="text-center text-gray-500 text-xs mt-0 py-0">
+      &copy;2019 Acme Corp. All rights reserved.
+    </p>
   </div>
 </template>
 
@@ -51,7 +61,7 @@ export default {
       localStorage.csrf = response.data.csrf
       localStorage.signedIn = true
       this.error = ''
-      this.$router.replace('/records')
+      this.$router.replace('/articles')
     },
     signinFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || ''
@@ -60,7 +70,7 @@ export default {
     },
     checkSignedIn () {
       if (localStorage.signedIn) {
-        this.$router.replace('/records')
+        this.$router.replace('/articles')
       }
     }
   }

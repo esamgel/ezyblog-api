@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @artists = Artist.all
-    render json: @artists
+    # @article = Article.all
+    @article = Article.where(tag: 'publish').all
+    render json: @article
   end
 end
